@@ -365,6 +365,44 @@ nav ul li a:hover, nav ul li a.active {
     animation: float 6s ease-in-out infinite 2s;
 }
 
+@media (max-width: 992px) {
+    .floating-code {
+        max-width: 200px;
+    }
+    
+    .floating-code-1 {
+        right: 15%;
+    }
+    
+    .floating-code-2 {
+        left: -20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-code {
+        max-width: 180px;
+    }
+    
+    .floating-code-1 {
+        right: 10%;
+    }
+    
+    .floating-code-2 {
+        left: -15px;
+    }
+    
+    .floating-code-3 {
+        right: -15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .floating-code {
+        display: none;
+    }
+}
+
 .dots-container {
     text-align: center;
     margin-top: 15px;
