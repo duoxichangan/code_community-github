@@ -1,0 +1,86 @@
+/* contest.css - 竞赛信息页面专用样式 */
+
+/* 竞赛内容容器 */
+.contest-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.contest-title {
+    text-align: center;
+    color: #0066cc;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+}
+
+/* 竞赛网格布局 */
+.competition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* 竞赛卡片样式 */
+.competition-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.competition-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.competition-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.competition-info {
+    padding: 20px;
+}
+
+.competition-info h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.competition-info p {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* 按钮样式 */
+.btn {
+    display: inline-block;
+    background-color: #0066cc;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0052a3;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .competition-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contest-title {
+        font-size: 1.8rem;
+    }
+}

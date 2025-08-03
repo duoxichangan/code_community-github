@@ -1,0 +1,113 @@
+/* excellent.css - 优秀成员页面专用样式 */
+
+/* 优秀成员容器 */
+.contest-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin: 30px 0;
+    color: #333;
+    font-size: 2rem;
+}
+
+/* 成员网格布局 */
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* 成员卡片样式 */
+.member-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    position: relative;
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+}
+
+.member-photo {
+    width: 40%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+.member-photo::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: #0066cc;
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-info {
+    padding: 20px;
+    width: 60%;
+}
+
+.member-info h3 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+}
+
+.member-info p {
+    margin: 8px 0;
+    color: #555;
+}
+
+.honors {
+    margin-top: 15px;
+}
+
+.honors ul {
+    margin: 5px 0 0 20px;
+    padding: 0;
+    list-style-type: disc;
+}
+
+.honors li {
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .members-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .member-card {
+        flex-direction: column;
+    }
+    
+    .member-photo,
+    .member-info {
+        width: 100%;
+    }
+    
+    .member-photo::after {
+        display: none;
+    }
+}

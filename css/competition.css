@@ -1,0 +1,150 @@
+/* 基础样式 */
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* 竞赛内容容器 */
+.competition-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 竞赛标题 */
+.competition-header {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.competition-header h1 {
+    font-size: 2.5rem;
+    color: #0066cc;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* 竞赛介绍部分 */
+.competition-intro {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin: 40px 0;
+}
+
+.competition-logo {
+    width: 200px;
+    height: auto;
+}
+
+.intro-text h2 {
+    color: #333;
+    border-bottom: 2px solid #0066cc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* 详细信息卡片 */
+.competition-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.detail-card {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.detail-card i {
+    font-size: 2rem;
+    color: #0066cc;
+    margin-bottom: 15px;
+}
+
+/* 历史时间线 */
+.competition-history {
+    margin: 60px 0;
+}
+
+.history-timeline {
+    position: relative;
+    padding-left: 50px;
+    margin-top: 30px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.timeline-year {
+    position: absolute;
+    left: -70px;
+    top: 0;
+    background: #0066cc;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.timeline-content {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.timeline-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+/* 页脚样式 */
+.competition-footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 60px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .competition-intro {
+        flex-direction: column;
+    }
+
+    .competition-logo {
+        margin-bottom: 20px;
+    }
+
+    .history-timeline {
+        padding-left: 30px;
+    }
+
+    .timeline-year {
+        left: -50px;
+    }
+}

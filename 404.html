@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面未找到 - 江西财经大学程序设计竞赛协会</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 错误内容区域 */
+        .error-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        .error-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .error-image {
+            max-width: 100%;
+            height: auto;
+            margin: 30px 0;
+            max-height: 300px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #0066cc;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background-color: #0052a3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 80px;
+            }
+
+            .error-title {
+                font-size: 24px;
+            }
+
+            .error-message {
+                font-size: 16px;
+            }
+        }
+    </style>
+    <!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
+</head>
+<body>
+<!-- 导航栏 -->
+<header class="container-fluid">
+    <div class="container">
+        <div class="logo">
+            <img src="images/logo.png" alt="协会logo" class="logo-image">
+            <h1>江西财经大学程序设计竞赛协会</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="contest.html">竞赛信息</a></li>
+                <li><a href="leader.html">协会负责人</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+<!-- 错误内容 -->
+<main class="error-container">
+    <div class="error-code">404</div>
+    <h1 class="error-title">哎呀，页面找不到了！</h1>
+    <p class="error-message">
+        您访问的页面可能已被移动、删除或暂时不可用。<br>
+        请检查URL是否正确，或者尝试以下操作：
+    </p>
+
+    <!-- 可以添加一个有趣的404插图 -->
+    <svg class="error-image" width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+        <rect x="50" y="80" width="200" height="20" rx="10" fill="#e9ecef"/>
+        <rect x="50" y="110" width="150" height="20" rx="10" fill="#e9ecef"/>
+        <circle cx="80" cy="60" r="30" fill="#0066cc"/>
+        <circle cx="80" cy="60" r="15" fill="#fff"/>
+        <path d="M100 40L120 30L140 50" stroke="#0066cc" stroke-width="3" fill="none"/>
+    </svg>
+
+    <div class="action-buttons">
+        <a href="index.html" class="btn">
+            <i class="fas fa-home"></i> 返回首页
+        </a>
+    </div>
+</main>
+
+<!-- 页脚 -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 江西财经大学程序设计竞赛协会 版权所有</p>
+        <p>联系我们: 3200513041@qq.com | 电话: 0791-83812345</p>
+    </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,448 @@
+ /* 友链页面专用样式 */
+
+/* 页面主体 */
+.links-main {
+    /* padding-top: 100px; 为固定导航栏留出空间 */
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* 页面标题区域 */
+.links-header {
+    text-align: center;
+    padding: 60px 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    margin-bottom: 60px;
+    border-radius: 0 0 50px 50px;
+}
+
+.links-header h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.links-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* 区域标题样式 */
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.section-title i {
+    margin-right: 15px;
+    font-size: 1.8rem;
+}
+
+/* 官方友链部分 */
+.official-links {
+    margin-bottom: 80px;
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.link-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.link-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary-color);
+}
+
+.link-card.official {
+    border-left: 5px solid var(--primary-color);
+}
+
+.link-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.link-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.link-content p {
+    color: var(--text-light);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.link-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.link-btn:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+    color: white;
+}
+
+/* 成员个人网站部分 */
+.member-links {
+    margin-bottom: 80px;
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.member-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+/* hover前的默认状态 - 类似图一的样式 */
+.member-card:not(:hover) {
+    background: #f8f9fa;
+    border-color: #e9ecef;
+}
+
+/* hover后的状态 - 类似图二的蓝色样式 */
+.member-card:hover {
+    background: linear-gradient(135deg, #4285f4, #1a73e8);
+    color: white;
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(66, 133, 244, 0.3);
+    border-color: #4285f4;
+}
+
+/* 成员头像样式 */
+.member-avatar {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 3px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.member-card:hover .member-avatar {
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+.member-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+/* 移除原来的遮罩层效果，改为简单的头像样式 */
+.avatar-overlay {
+    display: none;
+}
+
+.social-links {
+    display: none;
+}
+
+.social-link {
+    display: none;
+}
+
+/* 成员信息样式 */
+.member-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.member-card:hover .member-info h3 {
+    color: white;
+}
+
+.member-role {
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.member-card:hover .member-role {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.member-desc {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    line-height: 1.4;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.member-card:hover .member-desc {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.member-link {
+    display: inline-block;
+    padding: 8px 20px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary-color);
+}
+
+.member-card:hover .member-link {
+    background: white;
+    color: var(--primary-color);
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+.member-link:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 申请友链部分 */
+.apply-section {
+    background: white;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 60px;
+}
+
+.apply-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 30px;
+}
+
+.apply-requirements h3,
+.apply-contact h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.apply-requirements ul {
+    list-style: none;
+    padding: 0;
+}
+
+.apply-requirements li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 30px;
+}
+
+.apply-requirements li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.apply-requirements li:last-child {
+    border-bottom: none;
+}
+
+.contact-info {
+    margin-top: 20px;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    width: 20px;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .members-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+}
+
+@media (max-width: 900px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .links-header {
+        padding: 40px 0;
+        margin-bottom: 40px;
+    }
+    
+    .links-header h1 {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .links-grid,
+    .members-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .apply-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .apply-section {
+        padding: 30px 20px;
+    }
+    
+    .member-avatar {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .member-card {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .links-main {
+        padding-top: 80px;
+    }
+    
+    .links-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .links-header p {
+        font-size: 1rem;
+    }
+    
+    .member-card,
+    .link-card {
+        padding: 15px;
+    }
+    
+    .member-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .member-info h3 {
+        font-size: 1rem;
+    }
+    
+    .member-role {
+        font-size: 0.8rem;
+    }
+    
+    .member-desc {
+        font-size: 0.8rem;
+    }
+    
+    .member-link {
+        padding: 6px 15px;
+        font-size: 0.8rem;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.member-card,
+.link-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.member-card:nth-child(even) {
+    animation-delay: 0.1s;
+}
+
+.member-card:nth-child(3n) {
+    animation-delay: 0.2s;
+}
