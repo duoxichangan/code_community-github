@@ -79,13 +79,39 @@
     .training-title {
         font-size: 26px;
     }
-
+    
     .training-subtitle {
         font-size: 16px;
     }
-
+    
     .partner-logo {
         width: 80px;
         height: 80px;
     }
+}
+
+/* 奖项卡片样式 */
+.award-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.award-card h3 {
+    color: #0066cc;
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.award-card p {
+    margin: 8px 0;
+}
+
+.highlight {
+    color: #d9534f;
+    font-weight: bold;
+    font-style: italic;
 }

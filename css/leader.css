@@ -1,0 +1,113 @@
+/* 历届会长页面专用样式 */
+
+.session-number {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background-color: #4a6baf;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.leaders-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.leader-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px 20px 20px;
+  transition: transform 0.3s ease;
+  margin-top: 15px;
+}
+
+.leader-card:hover {
+  transform: translateY(-5px);
+}
+
+.leader-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.leader-info {
+  text-align: center;
+  width: 100%;
+}
+
+.leader-name {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.leader-class {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.leader-message {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 20px;
+  text-align: justify;
+  padding: 0 20px;
+}
+
+.leader-achievements {
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.leader-achievements h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.leader-achievements ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.leader-achievements li {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .leader-card {
+    padding: 15px;
+  }
+
+  .leader-avatar {
+    width: 120px;
+    height: 120px;
+  }
+
+  .leader-message {
+    padding: 0 10px;
+  }
+}
