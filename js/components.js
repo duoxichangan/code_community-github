@@ -16,7 +16,7 @@ const HEADER_HTML = `
                 <li><a href="links.html">友链栏</a></li>
             </ul>
         </nav>
-        <div class="menu-toggle">
+        <div class="menu-toggle" aria-expanded="false">
             <i class="fas fa-bars"></i>
         </div>
     </div>
@@ -76,27 +76,21 @@ class ComponentLoader {
         const element = document.getElementById(elementId);
         if (element) {
             element.innerHTML = htmlContent;
-            
-            // 如果是header组件，设置active状态
             if (elementId === 'header-placeholder') {
                 this.setActiveNavItem();
             }
         }
     }
 
-    // 设置导航栏active状态
+    // 设置导航栏 active 状态
     setActiveNavItem() {
-        // 等待DOM更新
         setTimeout(() => {
-            const navLinks = document.querySelectorAll('nav ul li a');
-            navLinks.forEach(link => {
+            document.querySelectorAll('nav ul li a').forEach(link => {
                 link.classList.remove('active');
-                
-                // 根据当前页面设置active状态
                 const href = link.getAttribute('href');
                 if (href) {
                     const linkPage = href.replace('.html', '');
-                    if (linkPage === this.currentPage || 
+                    if (linkPage === this.currentPage ||
                         (this.currentPage === 'index' && href === 'index.html')) {
                         link.classList.add('active');
                     }
@@ -105,7 +99,7 @@ class ComponentLoader {
         }, 100);
     }
 
-    // 初始化所有组件
+    // 初始化组件
     init() {
         this.loadComponent('header-placeholder', HEADER_HTML);
         this.loadComponent('footer-placeholder', FOOTER_HTML);
@@ -116,32 +110,19 @@ class ComponentLoader {
 class ScrollHandler {
     constructor() {
         this.header = null;
-        this.lastScrollTop = 0;
-        this.init();
-    }
-
-    init() {
-        // 等待header加载完成
         setTimeout(() => {
             this.header = document.querySelector('header');
-            if (this.header) {
-                this.addScrollListener();
-            }
+            if (this.header) this.addScrollListener();
         }, 200);
     }
 
     addScrollListener() {
         window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            // 添加滚动样式
-            if (scrollTop > 50) {
+            if (window.scrollY > 50) {
                 this.header.classList.add('scrolled');
             } else {
                 this.header.classList.remove('scrolled');
             }
-            
-            this.lastScrollTop = scrollTop;
         });
     }
 }
@@ -149,30 +130,23 @@ class ScrollHandler {
 // 移动端菜单切换功能
 class MobileMenuHandler {
     constructor() {
-        this.init();
-    }
-
-    init() {
-        // 等待DOM加载完成
         setTimeout(() => {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navMenu = document.querySelector('nav ul');
-            const header = document.querySelector('header');
+            this.menuToggle = document.querySelector('.menu-toggle');
+            this.header = document.querySelector('header');
+            this.nav = document.querySelector('nav ul');
+            this.navLinks = document.querySelectorAll('nav ul li a');
 
-            if (menuToggle && navMenu) {
-                menuToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('show');
-                    header.classList.toggle('menu-open');
+            if (!this.menuToggle || !this.header || !this.nav) {
+                console.error('MobileMenuHandler 初始化失败', {
+                    menuToggle: this.menuToggle,
+                    header: this.header,
+                    nav: this.nav
                 });
+                return;
+            }
 
-                // 点击菜单项时关闭菜单
-                const navLinks = document.querySelectorAll('nav ul li a');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        navMenu.classList.remove('show');
-                        header.classList.remove('menu-open');
-                    });
-                });
+            this.toggleMenu = this.toggleMenu.bind(this);
+            this.closeMenu = this.closeMenu.bind(this);
 
             this.menuToggle.addEventListener('click', this.toggleMenu);
             this.navLinks.forEach(link => link.addEventListener('click', this.closeMenu));
@@ -197,14 +171,9 @@ class MobileMenuHandler {
     }
 }
 
-// 页面加载完成后初始化所有功能
-document.addEventListener('DOMContentLoaded', () => {
-    const loader = new ComponentLoader();
-    loader.init();
-    
-    // 初始化滚动处理器
+// DOM Ready 初始化
+window.addEventListener('DOMContentLoaded', () => {
+    new ComponentLoader().init();
     new ScrollHandler();
-    
-    // 初始化移动端菜单处理器
     new MobileMenuHandler();
 });
