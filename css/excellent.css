@@ -2,7 +2,7 @@
 
 /* 优秀成员容器 */
 .contest-container {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 40px auto;
     padding: 0 20px;
 }
@@ -17,11 +17,12 @@
 /* 成员网格布局 */
 .members-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 30px;
     padding: 20px;
-    max-width: 1600px;
+    max-width: 1200px;
     margin: 0 auto;
+    justify-content: center;
 }
 
 /* 成员卡片样式 */
@@ -29,10 +30,13 @@
     background: white;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
     display: flex;
+    flex-direction: column;
     position: relative;
+    width: 350px;
+    margin: 0 auto 30px;
 }
 
 .member-card:hover {
@@ -40,36 +44,44 @@
 }
 
 .member-photo {
-    width: 40%;
-    height: 250px;
+    width: 100%; /* 宽度填满卡片 */
+    height: 250px; /* 固定高度 */
     overflow: hidden;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
 }
 
 .member-photo::after {
     content: "";
     position: absolute;
-    right: 0;
-    top: 20px;
-    bottom: 20px;
-    width: 2px;
+    left: 20px;
+    right: 20px;
+    bottom: 0;
+    height: 2px;
     background: #0066cc;
 }
 
 .member-photo img {
-    width: 100%;
-    height: 100%;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #0066cc;
 }
 
 .member-info {
     padding: 20px;
-    width: 60%;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .member-info h3 {
     margin: 0 0 10px 0;
-    color: #2c3e50;
+    color: #0066cc;
+    text-align: center;
 }
 
 .member-info p {
@@ -78,18 +90,19 @@
 }
 
 .honors {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .honors ul {
-    margin: 5px 0 0 20px;
+    margin: 8px 0 0 20px;
     padding: 0;
     list-style-type: disc;
 }
 
 .honors li {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     color: #555;
+    line-height: 1.4;
 }
 
 /* 响应式设计 */

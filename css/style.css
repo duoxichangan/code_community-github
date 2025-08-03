@@ -15,10 +15,9 @@
 }
 
 .section-title {
-    text-align: center;    /* 标题居中 */
+    text-align: center;
     margin-bottom: 30px;
 }
-
 
 /* 基础样式重置 */
 * {
@@ -32,6 +31,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     background-color: var(--bg-light);
+    padding-top: 80px;
 }
 
 a {
@@ -49,20 +49,15 @@ ul {
 }
 
 .container {
-    width: 100%;
-    height: 100%;
-    max-width: 1400px; /* 增加最大宽度 */
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* 全宽容器，用于背景延伸到屏幕边缘 */
 .container-fluid {
     width: 100%;
-    height: 100%;
-    padding: 0 ;
+    padding: 0;
     margin: 0;
-    display: block;
     box-sizing: border-box;
 }
 
@@ -102,19 +97,23 @@ ul {
 
 /* 导航栏样式 */
 header {
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     box-shadow: var(--shadow);
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 100;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
     transition: all 0.3s ease;
 }
 
 /* 滚动时导航栏样式 */
 header.scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(15px);
 }
 
 /* Logo图片样式 */
@@ -140,7 +139,7 @@ header .container {
 
 .logo h1 {
     color: var(--primary-color);
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0;
     letter-spacing: 0.5px;
 }
@@ -160,7 +159,7 @@ nav ul li {
 
 nav ul li a {
     color: var(--text-color);
-    font-weight:500;
+    font-weight: 500;
     padding: 8px 12px;
     border-radius: 4px;
 }
@@ -172,30 +171,28 @@ nav ul li a:hover, nav ul li a.active {
 
 .menu-toggle {
     display: none;
-    font-size: 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
     color: var(--primary-color);
 }
 
-/* 移动端菜单样式 - 更新版 */
+/* 移动端菜单样式 */
 @media (max-width: 768px) {
-    /* 汉堡菜单按钮样式 */
     .menu-toggle {
         display: block;
         cursor: pointer;
         z-index: 1000;
     }
 
-    /* 导航菜单容器 */
     nav ul {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        height: 100vh; /* 确保全屏 */
+        height: 100vh;
         background-color: white;
-        padding: 100px 20px 30px; /* 顶部预留空间给 header，底部空间 */
+        padding: 100px 20px 30px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         opacity: 0;
         transform: translateY(-20px);
@@ -204,38 +201,35 @@ nav ul li a:hover, nav ul li a.active {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        pointer-events: none; /* 禁止交互，直到展开 */
+        pointer-events: none;
     }
 
-    /* 菜单展开状态 */
     nav ul.show {
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;
     }
 
-    /* 菜单项样式 */
     nav ul li {
-        margin: 25px 0;
+        margin: 15px 0;
         text-align: center;
         list-style: none;
     }
 
-    /* 菜单链接样式 */
     nav ul li a {
-        font-size: 1.5rem;
-        padding: 15px 0;
+        font-size: 1.1rem;
+        padding: 8px 0;
         display: block;
         color: #333;
         text-decoration: none;
         transition: color 0.2s;
+        white-space: nowrap;
     }
 
     nav ul li a:hover {
         color: #0066cc;
     }
 
-    /* 菜单打开时的header样式 */
     header.menu-open {
         background-color: white !important;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -246,13 +240,13 @@ nav ul li a:hover, nav ul li a.active {
 .hero {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: white;
-    padding: 80px 0; /* 减少上下内边距，使内容更靠上 */
-    height: 100vh;
+    padding: 120px 0 80px;
+    min-height: calc(100vh - 80px);
     display: flex;
-    align-items: flex-start; /* 改为靠上对齐，而不是居中 */
-    padding-top: 120px; /* 增加顶部内边距，确保内容不会被导航栏遮挡 */
+    align-items: center;
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 /* 添加背景图案 */
@@ -324,7 +318,7 @@ nav ul li a:hover, nav ul li a.active {
 .hero-image-container {
     position: relative;
     width: 100%;
-    max-width: 700px; /* 从500px增加到700px，使图片更宽 */
+    max-width: 700px;
 }
 
 .hero-image-main {
@@ -341,15 +335,15 @@ nav ul li a:hover, nav ul li a.active {
 
 .floating-code {
     position: absolute;
-    background: rgba(255, 255, 255, 0.9); /* 更不透明的白色背景 */
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(5px);
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    font-family: 'Consolas', 'Monaco', 'Courier New', monospace; /* 更多等宽字体选项 */
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 0.9rem;
-    font-weight: bold; /* 加粗 */
-    color: #000; /* 黑色文字 */
+    font-weight: bold;
+    color: #000;
     z-index: 2;
 }
 
@@ -388,9 +382,8 @@ nav ul li a:hover, nav ul li a.active {
 }
 
 .dot.active {
-    background-color: var(--primary-color); /* 或其他高亮颜色 */
+    background-color: var(--primary-color);
 }
-
 
 /* 动画关键帧 */
 @keyframes fadeInUp {
@@ -434,7 +427,6 @@ nav ul li a:hover, nav ul li a.active {
 }
 
 .slide {
-    /* 隐藏时稍微往下移一点 */
     transform: translateY(20px);
     opacity: 0;
     pointer-events: none;
@@ -446,12 +438,12 @@ nav ul li a:hover, nav ul li a.active {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-
-
 /* 特色内容样式 */
 .features {
     padding: 80px 0;
     background-color: var(--bg-color);
+    position: relative;
+    z-index: 1;
 }
 
 .feature-grid {
@@ -487,7 +479,7 @@ nav ul li a:hover, nav ul li a.active {
 
 /* 关于我们预览样式 */
 .about-preview {
-    padding: 120px 0 80px; /* 增加顶部内边距，防止被导航栏遮挡 */
+    padding: 80px 0;
     background-color: var(--bg-light);
     position: relative;
     overflow: hidden;
@@ -522,7 +514,7 @@ nav ul li a:hover, nav ul li a.active {
 
 .about-preview .container {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 进一步增加左侧宽度 */
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
     align-items: center;
 }
@@ -539,7 +531,6 @@ nav ul li a:hover, nav ul li a.active {
     margin-left: 0;
 }
 
-
 .about-content p {
     margin-bottom: 20px;
 }
@@ -548,7 +539,7 @@ nav ul li a:hover, nav ul li a.active {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 700px; /* 从500px增加到700px */
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -650,40 +641,40 @@ nav ul li a:hover, nav ul li a.active {
 /* 竞赛Logo样式 */
 .contest-logos {
     margin-top: 40px;
-    padding: 20px 40px;  /* 大幅增加内边距 */
+    padding: 20px 40px;
     background-color: white;
-    border-radius: 20px;  /* 增大圆角 */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);  /* 更强的阴影效果 */
-    max-width: 1200px;  /* 显著增加最大宽度 */
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
 }
 
 .contest-logos h3 {
-    font-size: 2rem;  /* 增大标题字体 */
+    font-size: 2rem;
     margin-bottom: 30px;
 }
 
 .logo-stack {
     position: relative;
     width: 100%;
-    max-width: 1100px;  /* 显著增加最大宽度 */
+    max-width: 1100px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, auto);
-    gap: 50px;  /* 大幅增加间距 */
+    gap: 50px;
     padding: 30px 0;
 }
 
 .logo-item {
     position: relative;
     width: 100%;
-    max-width: 220px;  /* 显著增加logo尺寸 */
+    max-width: 220px;
     height: auto;
     background-color: white;
-    padding: 25px;  /* 增加内边距 */
+    padding: 25px;
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
@@ -692,71 +683,6 @@ nav ul li a:hover, nav ul li a.active {
     justify-self: center;
 }
 
-/* 响应式调整 */
-@media (max-width: 1200px) {
-    .contest-logos {
-        max-width: 1000px;
-        padding: 35px 50px;
-    }
-
-    .logo-stack {
-        max-width: 900px;
-        gap: 40px;
-    }
-
-    .logo-item {
-        max-width: 200px;
-    }
-}
-
-@media (max-width: 992px) {
-    .contest-logos {
-        max-width: 900px;
-        padding: 30px 40px;
-    }
-
-    .logo-stack {
-        max-width: 800px;
-        gap: 35px;
-    }
-
-    .logo-item {
-        max-width: 180px;
-    }
-}
-
-@media (max-width: 768px) {
-    .contest-logos {
-        padding: 25px 30px;
-        width: 95%;
-    }
-
-    .logo-stack {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-
-    .logo-item {
-        max-width: 160px;
-        padding: 20px;
-    }
-}
-
-@media (max-width: 576px) {
-    .contest-logos {
-        padding: 20px;
-        border-radius: 15px;
-    }
-
-    .logo-stack {
-        gap: 25px;
-    }
-
-    .logo-item {
-        max-width: 140px;
-        padding: 15px;
-    }
-}
 /* 为每个logo-item设置特定的样式 */
 .logo-item-1 {
     transform: rotate(-5deg);
@@ -806,76 +732,19 @@ nav ul li a:hover, nav ul li a.active {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* 响应式调整 */
-@media (max-width: 768px) {
-    .logo-stack {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, auto);
-        gap: 20px;
-        max-width: 600px; /* 在中等屏幕上减小最大宽度 */
-    }
-
-    .logo-item {
-        max-width: 120px; /* 在中等屏幕上调整logo大小 */
-    }
-
-    /* 重新排列logo项目 */
-    .logo-item-1 {
-        grid-column: 1;
-        grid-row: 1;
-    }
-
-    .logo-item-2 {
-        grid-column: 2;
-        grid-row: 1;
-    }
-
-    .logo-item-3 {
-        grid-column: 1;
-        grid-row: 2;
-    }
-
-    .logo-item-4 {
-        grid-column: 2;
-        grid-row: 2;
-    }
-
-    .logo-item-5 {
-        grid-column: 1;
-        grid-row: 3;
-    }
-
-    .logo-item-6 {
-        grid-column: 2;
-        grid-row: 3;
-    }
-}
-
-@media (max-width: 576px) {
-    .logo-stack {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-
-    .logo-item {
-        max-width: 80px;
-        padding: 8px;
-    }
-}
-
 /* 最新动态样式 */
 .news {
     min-height: auto;
     padding: 80px 0;
-    background-color: transparent;
+    background-color: var(--bg-light);
     position: relative;
-    display: flex;          /* 启用 Flex 布局 */
-    flex-direction: column;  /* 垂直排列子元素 */
-    justify-content: center; /* 垂直居中 */
-    align-items: center;    /* 水平居中 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
+    z-index: 1;
 }
-
 
 .news-grid {
     display: grid;
@@ -883,11 +752,10 @@ nav ul li a:hover, nav ul li a.active {
     gap: 30px;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;         /* 水平居中 */
+    margin: 0 auto;
     padding: 0;
-    justify-items: center;  /* 网格项水平居中 */
+    justify-items: center;
 }
-
 
 .news-card {
     background-color: white;
@@ -899,11 +767,6 @@ nav ul li a:hover, nav ul li a.active {
 .news-card:hover {
     transform: translateY(-5px);
 }
-
-.news-content {
-     padding: 20px;
-     flex-grow: 1;
- }
 
 .news-date {
     background-color: var(--primary-color);
@@ -1035,7 +898,59 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* 向下箭头样式 */
+.scroll-down-arrow {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    animation: bounce 2s infinite;
+}
+
+.arrow-link {
+    display: block;
+    color: var(--primary-color);
+    font-size: 2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.arrow-link:hover {
+    color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+/* 弹跳动画 */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-5px) translateX(-50%);
+    }
+}
+
 /* 响应式设计 */
+@media (max-width: 1200px) {
+    .contest-logos {
+        max-width: 1000px;
+        padding: 35px 50px;
+    }
+
+    .logo-stack {
+        max-width: 900px;
+        gap: 40px;
+    }
+
+    .logo-item {
+        max-width: 200px;
+    }
+}
+
 @media (max-width: 992px) {
     .about-preview .container {
         grid-template-columns: 1fr;
@@ -1063,6 +978,20 @@ footer {
     .about-content .btn {
         margin: 0 5px 10px;
     }
+
+    .contest-logos {
+        max-width: 900px;
+        padding: 30px 40px;
+    }
+
+    .logo-stack {
+        max-width: 800px;
+        gap: 35px;
+    }
+
+    .logo-item {
+        max-width: 180px;
+    }
 }
 
 @media (max-width: 1000px) {
@@ -1075,8 +1004,6 @@ footer {
         display: block;
     }
 
-
-
     .logo h1 {
         font-size: 1.2rem;
     }
@@ -1084,10 +1011,57 @@ footer {
     .logo-image {
         height: 40px;
     }
-
-    /* 其余保持不变 */
 }
 
+@media (max-width: 768px) {
+    .contest-logos {
+        padding: 25px 30px;
+        width: 95%;
+    }
+
+    .logo-stack {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, auto);
+        gap: 30px;
+        max-width: 600px;
+    }
+
+    .logo-item {
+        max-width: 160px;
+        padding: 20px;
+    }
+
+    /* 重新排列logo项目 */
+    .logo-item-1 {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .logo-item-2 {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .logo-item-3 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .logo-item-4 {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .logo-item-5 {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .logo-item-6 {
+        grid-column: 2;
+        grid-row: 3;
+    }
+}
 
 @media (max-width: 576px) {
     .hero {
@@ -1098,7 +1072,7 @@ footer {
         font-size: 2rem;
     }
 
-    .   section-title {
+    .section-title {
         font-size: 1.8rem;
     }
 
@@ -1113,47 +1087,25 @@ footer {
     }
 
     .image-placeholder {
-        aspect-ratio: 4/3; /* 更改宽高比，使图片在小屏幕上不会太高 */
+        aspect-ratio: 4/3;
     }
 
     .image-placeholder i {
         font-size: 1.2rem;
         padding: 8px;
     }
-}
 
-/* 向下箭头样式 */
-.scroll-down-arrow {
-    position: absolute;
-    bottom: 20px; /* 距离底部距离 */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    animation: bounce 2s infinite; /* 添加轻微弹跳动画 */
-}
-
-.arrow-link {
-    display: block;
-    color: var(--primary-color); /* 箭头颜色 */
-    font-size: 2rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.arrow-link:hover {
-    color: var(--accent-color); /* 悬停颜色 */
-    transform: scale(1.2);
-}
-
-/* 弹跳动画 */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0) translateX(-50%);
+    .contest-logos {
+        padding: 20px;
+        border-radius: 15px;
     }
-    40% {
-        transform: translateY(-10px) translateX(-50%);
+
+    .logo-stack {
+        gap: 25px;
     }
-    60% {
-        transform: translateY(-5px) translateX(-50%);
+
+    .logo-item {
+        max-width: 140px;
+        padding: 15px;
     }
 }

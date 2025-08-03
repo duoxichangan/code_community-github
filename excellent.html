@@ -8,30 +8,11 @@
     <link rel="stylesheet" href="css/excellent.css">
     <!-- 引入Font Awesome图标库 -->
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="images/logo.png" type="image/x-icon">
+    <link rel="icon" href="images/mini_logo.png" type="image/x-icon">
 </head>
 <body>
-<!-- 导航栏 -->
-<header class="container-fluid">
-    <div class="container">
-        <div class="logo">
-            <img src="images/logo.png" alt="协会logo" class="logo-image">
-            <h1>江西财经大学程序设计竞赛协会</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">首页</a></li>
-                <li><a href="contest.html">竞赛信息</a></li>
-                <li><a href="leader.html">协会负责人</a></li>
-                <li><a href="excellent.html" class="active">优秀成员</a></li>
-                <li><a href="links.html">友链栏</a></li>
-            </ul>
-        </nav>
-        <div class="menu-toggle">
-            <i class="fas fa-bars"></i>
-        </div>
-    </div>
-</header>
+<!-- 导航栏占位符 -->
+<div id="header-placeholder"></div>
 
 <!-- 优秀成员主体 -->
 <main class="contest-container">
@@ -40,15 +21,91 @@
         <!-- 成员卡片1 -->
         <div class="member-card">
             <div class="member-photo">
-                <img src="images/member1.jpg" alt="张三">
+                <img src="images/excellent_member/whf.png" alt="王海峰">
             </div>
             <div class="member-info">
-                <h3>张三</h3>
-                <p><strong>班级：</strong><hr>xxx</p>
+                <h3>王海峰</h3>
+                <p><strong>班级：</strong>21计算机科学与技术1班</p>
                 <div class="honors">
                     <strong>荣誉：</strong>
                     <ul>
-                        <li>...</li>
+                        <li>2023区域赛银牌</li>
+                        <li>2024ICPC江西省赛季军</li>
+                        <li>保研至北京邮电大学</li>
+                        <li>🛰️：wanghaifeng684568</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="member-card">
+            <div class="member-photo">
+                <img src="images/excellent_member/wjj.png" alt="王俊杰">
+            </div>
+            <div class="member-info">
+                <h3>王俊杰</h3>
+                <p><strong>班级：</strong>22计算机科学与技术1班</p>
+                <div class="honors">
+                    <strong>荣誉：</strong>
+                    <ul>
+                        <li>专业排名第一</li>
+                        <li>2023-2024学年国家奖学金</li>
+                        <li>蓝桥杯国家级一等奖 *2</li>
+                        <li>2025团体程序设计天梯赛全国个人三等奖</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="member-card">
+            <div class="member-photo">
+                <img src="images/excellent_member/hyb.png" alt="胡衍滨">
+            </div>
+            <div class="member-info">
+                <h3>胡衍滨</h3>
+                <p><strong>班级：</strong>21VR6班</p>
+                <div class="honors">
+                    <strong>荣誉：</strong>
+                    <ul>
+                        <li>考研至上海交通大学计算机学院软件工程</li>
+                        <li>CCPC湘潭邀请赛铜牌</li>
+                        <li>江西省大学生程序设计大赛一等奖</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="member-card">
+            <div class="member-photo">
+                <img src="images/excellent_member/dyf.png" alt="邓一帆">
+            </div>
+            <div class="member-info">
+                <h3>邓一帆</h3>
+                <p><strong>班级：</strong>22软件工程9班</p>
+                <div class="honors">
+                    <strong>荣誉：</strong>
+                    <ul>
+                        <li>2023ICPC江西省赛铜牌</li>
+                        <li>第十四届蓝桥杯国家级三等奖</li>
+                        <li>第十五届蓝桥杯国家级优秀奖</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="member-card">
+            <div class="member-photo">
+                <img src="images/excellent_member/lx.png" alt="李鑫">
+            </div>
+            <div class="member-info">
+                <h3>李鑫</h3>
+                <p><strong>班级：</strong>23计算机科学与技术1班</p>
+                <div class="honors">
+                    <strong>荣誉：</strong>
+                    <ul>
+                        <li>2025CCPC全国邀请赛银牌*1</li>
+                        <li>2025ICPC全国邀请赛铜牌*2</li>
+                        <li>2024ICPC亚洲区域赛铜牌*1</li>
                     </ul>
                 </div>
             </div>
@@ -56,39 +113,10 @@
     </div>
 </main>
 
-<!-- 页脚 -->
-<footer class="container-fluid">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>联系我们</h3>
-                <p><i class="fas fa-envelope"></i> 3200513041@qq.com </p>
-                <p><i class="fas fa-phone"></i> 19970929018 </p>
-                <p><i class="fas fa-map-marker-alt"></i> 江西财经大学麦庐园校区</p>
-            </div>
-            <div class="footer-section">
-                <h3>关注我们</h3>
-                <div class="social-links">
-                    <a href="https://www.jxufe.edu.cn/"><img src="jxufe.png" alt="江西财经大学"  width="40px"></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>快速链接</h3>
-                    <ul>
-                        <li><a href="index.html">首页</a></li>
-                        <li><a href="contest.html">竞赛信息</a></li>
-                        <li><a href="leader.html">协会负责人</a></li>
-                        <li><a href="excellent.html">优秀成员</a></li>
-                        <li><a href="links.html">友链栏</a></li>
-                    </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 程序设计竞赛协会 版权所有</p>
-        </div>
-    </div>
-</footer>
+<!-- 页脚占位符 -->
+<div id="footer-placeholder"></div>
 
+<script src="js/components.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
