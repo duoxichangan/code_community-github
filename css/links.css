@@ -189,11 +189,12 @@
     display: none;
 }
 
-.social-links {
+/* 只隐藏成员卡片中的社交链接，不影响footer的社交链接 */
+.member-card .social-links {
     display: none;
 }
 
-.social-link {
+.member-card .social-link {
     display: none;
 }
 
