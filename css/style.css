@@ -140,7 +140,7 @@ header .container {
 
 .logo h1 {
     color: var(--primary-color);
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0;
     letter-spacing: 0.5px;
 }
@@ -172,7 +172,7 @@ nav ul li a:hover, nav ul li a.active {
 
 .menu-toggle {
     display: none;
-    font-size: 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
     color: var(--primary-color);
 }
@@ -216,19 +216,20 @@ nav ul li a:hover, nav ul li a.active {
 
     /* 菜单项样式 */
     nav ul li {
-        margin: 25px 0;
+        margin: 15px 0;
         text-align: center;
         list-style: none;
     }
 
     /* 菜单链接样式 */
     nav ul li a {
-        font-size: 1.5rem;
-        padding: 15px 0;
+        font-size: 1.1rem;
+        padding: 8px 0;
         display: block;
         color: #333;
         text-decoration: none;
         transition: color 0.2s;
+        white-space: nowrap;
     }
 
     nav ul li a:hover {
