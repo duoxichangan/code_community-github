@@ -17,10 +17,10 @@
 /* 成员网格布局 */
 .members-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     padding: 20px;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     justify-content: center;
 }
