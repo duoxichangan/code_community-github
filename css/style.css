@@ -201,6 +201,9 @@ nav ul li a:hover, nav ul li a.active {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+
+        transform: translateY(-20px);
+        opacity: 0;
         pointer-events: none;
     }
 
