@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>友情链接 - 程序设计竞赛协会</title>
     <link rel="stylesheet" href="css/style_v1.css">
     <link rel="stylesheet" href="css/links_v1.css">
@@ -143,5 +146,43 @@
 
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- 控制台彩蛋 -->
+    <script>
+        // 检测开发者工具是否打开
+        let devtools = {
+            open: false,
+            orientation: null
+        };
+        
+        const threshold = 160;
+        
+        setInterval(() => {
+            if (window.outerHeight - window.innerHeight > threshold || 
+                window.outerWidth - window.innerWidth > threshold) {
+                if (!devtools.open) {
+                    devtools.open = true;
+                    console.log('%c🐟 woodfish到此一游 🐟', 
+                        'color: #4CAF50; font-size: 20px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);');
+                    console.log('%c欢迎来到程序设计竞赛协会！', 
+                        'color: #2196F3; font-size: 14px; font-weight: bold;');
+                    console.log('%c如果你对我们的网站感兴趣，欢迎加入我们！', 
+                        'color: #FF9800; font-size: 12px;');
+                }
+            } else {
+                devtools.open = false;
+            }
+        }, 500);
+        
+        // 备用方案：监听右键菜单和F12键
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                setTimeout(() => {
+                    console.log('%c🐟 woodfish到此一游 🐟', 
+                        'color: #4CAF50; font-size: 20px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);');
+                }, 100);
+            }
+        });
+    </script>
 </body>
 </html>
