@@ -174,15 +174,26 @@ class MobileMenuHandler {
                     });
                 });
 
-                // 点击页面其他地方时关闭菜单
-                document.addEventListener('click', (e) => {
-                    if (!header.contains(e.target)) {
-                        navMenu.classList.remove('show');
-                        header.classList.remove('menu-open');
-                    }
-                });
-            }
-        }, 200);
+            this.menuToggle.addEventListener('click', this.toggleMenu);
+            this.navLinks.forEach(link => link.addEventListener('click', this.closeMenu));
+            document.addEventListener('click', e => {
+                if (!this.header.contains(e.target) && this.header.classList.contains('menu-open')) {
+                    this.closeMenu();
+                }
+            });
+        }, 50);
+    }
+
+    toggleMenu(e) {
+        e.stopPropagation();
+        const expanded = this.menuToggle.getAttribute('aria-expanded') === 'true';
+        this.menuToggle.setAttribute('aria-expanded', (!expanded).toString());
+        this.header.classList.toggle('menu-open');
+    }
+
+    closeMenu() {
+        this.menuToggle.setAttribute('aria-expanded', 'false');
+        this.header.classList.remove('menu-open');
     }
 }
 
