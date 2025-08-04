@@ -748,6 +748,12 @@ nav ul li a:hover, nav ul li a.active {
     grid-row: 2;
 }
 
+.logo-item-7 {
+    transform: rotate(-1deg);
+    grid-column: 1;
+    grid-row: 3;
+}
+
 .logo-item img {
     width: 100%;
     height: auto;
