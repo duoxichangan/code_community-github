@@ -148,13 +148,19 @@
                             </a>
                         </div>
                         <div class="logo-item logo-item-4">
-                            <img src="images/contest/cccc.png" alt="CCCC Logo">
+                            <a href="./competition/baidu/baidu.html">
+                                <img src="images/contest/baidu.png" alt="CCCC Logo">
+                            </a>
                         </div>
                         <div class="logo-item logo-item-5">
-                            <img src="images/contest/czb.png" alt="CZB Logo">
+                            <a href="./competition/chuanzhi/chuanzhi.html">
+                                <img src="images/contest/czb.png" alt="CZB Logo">
+                            </a>
                         </div>
                         <div class="logo-item logo-item-6">
-                            <img src="images/contest/rk.png" alt="RK Logo">
+                            <a href="./competition/raicom/raicom.html">
+                                <img src="images/contest/rk.png" alt="RK Logo">
+                            </a>
                         </div>
                         <div class="logo-item logo-item-7">
                             <a href="./competition/lanqiao/lanqiao.html">
@@ -242,6 +248,85 @@
 
     <!-- 页脚占位符 -->
     <div id="footer-placeholder"></div>
+
+    <!-- 加入我们悬浮按钮 -->
+    <div class="floating-join-button">
+        <span>加入<br>我们</span>
+        <div class="qrcode-popup">
+            <img src="images/zxq_code.png" alt="招新群二维码">
+            <p>扫码加入招新群</p>
+        </div>
+    </div>
+
+    <style>
+        /* 优化后的悬浮按钮样式 */
+        .floating-join-button {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4da6ff, #1a8cff);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 1000;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            line-height: 1.3;
+            padding: 0 10px;
+        }
+
+        .floating-join-button:hover {
+            background: linear-gradient(135deg, #3399ff, #0077e6);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .qrcode-popup {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            width: 200px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            text-align: center;
+            transform: translateY(10px);
+        }
+
+        .floating-join-button:hover .qrcode-popup {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .qrcode-popup img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .qrcode-popup p {
+            margin: 0;
+            color: #555;
+            font-size: 15px;
+            font-weight: 500;
+        }
+    </style>
 
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
