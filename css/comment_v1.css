@@ -1,0 +1,339 @@
+/* 重置基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #f9fafb;
+}
+
+/* 主体内容区域 */
+main {
+    width: 100%;
+    max-width: 1300px;
+    margin: 24px auto;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* 今日打卡区域 */
+.today-comments {
+    margin-bottom: 32px;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.today-comments h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #1e40af;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #dbeafe;
+}
+
+/* 日期选择器 */
+.date-picker {
+    margin: 32px 0;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.date-picker input[type="date"] {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+.date-picker input[type="date"]:focus {
+    outline: none;
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.3);
+}
+
+.date-picker button {
+    padding: 10px 20px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.date-picker button:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.date-picker button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+/* 评论表单 */
+.comment-form {
+    margin-bottom: 40px;
+}
+
+#username {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+#username:focus {
+    outline: none;
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.3);
+}
+
+/* 输入框与表情按钮容器 */
+.input-with-emoji {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+#comment-content {
+    width: 100%;
+    padding: 16px;
+    padding-right: 3em;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    min-height: 120px;
+    resize: none;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+#comment-content:focus {
+    outline: none;
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.3);
+}
+
+/* 表情切换按钮 */
+.emoji-toggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4em;
+    color: #64748b;
+    transition: all 0.2s ease;
+}
+
+.emoji-toggle:hover {
+    color: #3b82f6;
+    transform: scale(1.1);
+}
+
+/* Emoji 面板 */
+.emoji-picker {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    z-index: 10;
+    max-width: 240px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    display: none; /* 默认隐藏 */
+}
+
+/* Emoji 按钮 */
+.emoji-btn {
+    font-size: 1.4em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.emoji-btn:hover {
+    background: #f1f5f9;
+    transform: scale(1.2);
+}
+
+/* 提交按钮 */
+.comment-form button#submit-comment {
+    padding: 12px 24px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.comment-form button#submit-comment:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.comment-form button#submit-comment:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+.comment-form button#submit-comment.loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+}
+
+.comment-form button#submit-comment.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.comment-form button#submit-comment.success {
+    background: #10b981;
+    animation: pulseSuccess 0.5s ease;
+}
+
+@keyframes pulseSuccess {
+    0% { background-color: #3b82f6; }
+    50% { background-color: #10b981; }
+    100% { background-color: #10b981; }
+}
+
+/* 评论项样式 */
+.comment-item {
+    padding: 20px;
+    margin-bottom: 20px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.comment-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* 评论头部 */
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.comment-header strong {
+    font-weight: 600;
+    color: #1e40af;
+}
+
+.comment-header span {
+    font-size: 0.9em;
+    color: #64748b;
+}
+
+/* 评论内容 */
+.comment-content {
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: #334155;
+}
+
+/* 删除按钮 */
+.delete-btn {
+    padding: 6px 12px;
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+    background: #fee2e2;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.delete-btn:active {
+    transform: translateY(0);
+}
+
+/* 动画 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 响应式 */
+@media (max-width: 600px) {
+    main {
+        padding: 16px;
+    }
+    .comment-item {
+        padding: 12px;
+    }
+    .emoji-picker {
+        max-width: 180px;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
