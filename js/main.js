@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
     function nextSlide() {
         showSlide(currentSlide + 1);
     }
@@ -45,70 +44,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initSlideshow();
 
-    // 增强的移动端导航菜单功能
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav ul');
-    const header = document.querySelector('header');
+    // 注意：移动端菜单功能已移动到components.js中的MobileMenuHandler类处理
+    // 滚动效果也已移动到components.js中的ScrollHandler类处理
 
-    if (menuToggle && nav) {
-        // 菜单切换功能
-        menuToggle.addEventListener('click', function(e) {
-            e.stopPropagation(); // 阻止事件冒泡
-            nav.classList.toggle('show');
-            header.classList.toggle('menu-open'); // 添加菜单打开状态
-        });
+    // 平滑滚动到锚点 - 延迟执行以确保组件已加载
+    setTimeout(() => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
 
-        // 点击菜单外区域关闭菜单
-        document.addEventListener('click', function(e) {
-            if (!nav.contains(e.target) && e.target !== menuToggle) {
-                nav.classList.remove('show');
-                header.classList.remove('menu-open');
-            }
-        });
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
 
-        // 点击菜单项后关闭菜单（针对移动端）
-        document.querySelectorAll('nav ul li a').forEach(link => {
-            link.addEventListener('click', function() {
-                if (window.innerWidth <= 768) {
-                    nav.classList.remove('show');
-                    header.classList.remove('menu-open');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+
+                    // 移动端点击后关闭菜单 - 使用components.js中的方法
+                    const header = document.querySelector('header');
+                    if (window.innerWidth <= 768 && header && header.classList.contains('menu-open')) {
+                        // 触发菜单关闭
+                        const menuToggle = document.querySelector('.menu-toggle');
+                        if (menuToggle) {
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                            header.classList.remove('menu-open');
+                        }
+                    }
                 }
             });
         });
-    }
-
-    // 滚动时导航栏样式变化效果
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
-    // 平滑滚动到锚点
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-
-                // 移动端点击后关闭菜单
-                if (window.innerWidth <= 768 && nav.classList.contains('show')) {
-                    nav.classList.remove('show');
-                    header.classList.remove('menu-open');
-                }
-            }
-        });
-    });
+    }, 150); // 稍微延迟更长时间确保所有组件都已加载
 
     // 添加滚动动画效果（保持不变）
     const animateOnScroll = function() {
