@@ -1,0 +1,186 @@
+/* 训练分享页面样式 */
+.training-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* 寄语部分样式 */
+.training-message {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.training-message h2 {
+    color: #0066cc;
+    margin-bottom: 1rem;
+}
+
+.training-message p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.training-message p:last-child {
+    font-style: italic;
+    text-align: right;
+    color: #666;
+}
+
+/* 平台推荐部分样式 */
+.big_migrate-recommend {
+    margin-bottom: 2rem;
+}
+
+.big_migrate-recommend h2 {
+    color: #0066cc;
+    margin-bottom: 1.5rem;
+}
+
+.big_migrate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.big_migrate-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.big_migrate-card:hover {
+    transform: translateY(-5px);
+}
+
+.big_migrate-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+.big_migrate-card h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.big_migrate-card p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.big_migrate-card a {
+    display: inline-block;
+    background-color: #0066cc;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.big_migrate-card a:hover {
+    background-color: #0052a3;
+}
+
+/* 资料下载部分样式 */
+.material-download {
+    margin-bottom: 2rem;
+}
+
+.material-download h2 {
+    color: #0066cc;
+    margin-bottom: 1.5rem;
+}
+
+.material-download table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.material-download th,
+.material-download td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.material-download th {
+    background-color: #0066cc;
+    color: white;
+}
+
+.material-download tr:last-child td {
+    border-bottom: none;
+}
+
+.material-download a {
+    color: #0066cc;
+    transition: color 0.3s ease;
+}
+
+.material-download a:hover {
+    color: #0052a3;
+}
+
+/* 任务发布部分样式 */
+.task-release h2 {
+    color: #0066cc;
+    margin-bottom: 1.5rem;
+}
+
+.task-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-card h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.task-card p {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.task-card a {
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.task-card a:hover {
+    color: #0052a3;
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .training-container {
+        padding: 1rem;
+    }
+
+    .platform-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .training-message,
+    .platform-card,
+    .task-card {
+        padding: 1rem;
+    }
+}
