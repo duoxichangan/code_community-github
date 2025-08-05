@@ -2,7 +2,7 @@
 
 /* 竞赛内容容器 */
 .contest-container {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 40px auto;
     padding: 0 20px;
 }
@@ -17,7 +17,7 @@
 /* 竞赛网格布局 */
 .competition-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
     gap: 30px;
     margin-top: 30px;
 }
