@@ -1,4 +1,4 @@
-// 组件内容定义
+// 组件内容定义（从独立文件同步）
 const HEADER_HTML = `
 <!-- 导航栏 -->
 <header class="container-fluid">
@@ -77,11 +77,47 @@ class ComponentLoader {
     loadComponent(elementId, htmlContent) {
         const element = document.getElementById(elementId);
         if (element) {
-            element.innerHTML = htmlContent;
+            // 根据页面路径调整图片和链接路径
+            let adjustedContent = this.adjustPaths(htmlContent);
+            element.innerHTML = adjustedContent;
             if (elementId === 'header-placeholder') {
                 this.setActiveNavItem();
             }
         }
+    }
+
+    // 根据当前页面路径调整资源路径
+    adjustPaths(htmlContent) {
+        const currentPath = window.location.pathname;
+        const pathSegments = currentPath.split('/').filter(segment => segment !== '');
+        
+        // 计算需要返回的目录层级数
+        let backLevels = 0;
+        
+        // 如果在子目录中，需要调整路径
+        if (currentPath.includes('/action/') || currentPath.includes('/big_migrate/')) {
+            backLevels = 1;
+            // 特殊处理：如果在action的子目录中，需要两级返回
+            if (currentPath.includes('/action/') && pathSegments.length > 2) {
+                backLevels = 2;
+            }
+        } else if (currentPath.includes('/competition/')) {
+            // competition目录下的文件都需要两级返回 (competition/subdir/file.html)
+            backLevels = 2;
+        }
+        
+        if (backLevels > 0) {
+            const prefix = '../'.repeat(backLevels);
+            
+            // 调整图片路径
+            htmlContent = htmlContent.replace(/src="images\//g, `src="${prefix}images/`);
+            htmlContent = htmlContent.replace(/src="jxufe\.png"/g, `src="${prefix}jxufe.png"`);
+            
+            // 调整链接路径
+            htmlContent = htmlContent.replace(/href="([^"]*\.html)"/g, `href="${prefix}$1"`);
+        }
+        
+        return htmlContent;
     }
 
     // 设置导航栏 active 状态
@@ -91,9 +127,9 @@ class ComponentLoader {
                 link.classList.remove('active');
                 const href = link.getAttribute('href');
                 if (href) {
-                    const linkPage = href.replace('.html', '');
+                    const linkPage = href.split('/').pop().replace('.html', '');
                     if (linkPage === this.currentPage ||
-                        (this.currentPage === 'index' && href === 'index.html')) {
+                        (this.currentPage === 'index' && linkPage === 'index')) {
                         link.classList.add('active');
                     }
                 }
