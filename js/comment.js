@@ -38,8 +38,31 @@
             e.preventDefault();
             const username = usernameInput.value.trim();
             const content = commentInput.value.trim();
-            if (!username || !content) {
-                alert('请填写完整信息');
+
+            // ✅ 检查评论条数是否超过 200
+            const currentComments = todayCommentsList.querySelectorAll('.comment-item');
+            if (currentComments.length >= 200) {
+                alert('今日总评论已达上限（200条），请明天再来打卡');
+                return;
+            }
+
+            // ✅ 内容为空检查
+            if (!username && !content) {
+                alert('请填写姓名和内容');
+                return;
+            }
+            if (!username) {
+                alert('请填写姓名');
+                return;
+            }
+            if (!content) {
+                alert('请填写内容');
+                return;
+            }
+
+            // ✅ 长度限制检查
+            if (username.length > 20) {
+                alert('姓名不能超过 20 个字符');
                 return;
             }
             submitBtn.classList.add('loading');
