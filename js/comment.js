@@ -10,37 +10,30 @@
         const loadDateBtn = document.getElementById('load-date');
         const emojiPicker = document.getElementById('emoji-picker');
         const emojiToggle = document.getElementById('emoji-toggle');
+        const commentsTitle = document.getElementById('comments-title'); // 新增标题元素
 
         // 常用 emoji 列表
         const emojis = ['😊', '😂', '👍', '🎉', '❤️', '🤔', '😢', '🥳'];
 
         const today = new Date();
-        // 用于提交时保存的显示日期字符串
         const formattedDate = formatDate(today);
 
-        // 设置日期选择器默认值为今天
         dateSelector.valueAsDate = today;
-
-        // 渲染 emoji 选择器
         renderEmojiPicker();
-
-        // 初始渲染“今日已打卡”
+        updateCommentsTitle(today);
         loadComments(today);
 
-        // 文本区域自动伸缩
         function adjustTextareaHeight() {
             commentInput.style.height = 'auto';
             commentInput.style.height = commentInput.scrollHeight + 'px';
         }
         commentInput.addEventListener('input', adjustTextareaHeight);
 
-        // Emoji 面板切换
         emojiToggle.addEventListener('click', () => {
             const open = emojiPicker.style.display !== 'block';
             emojiPicker.style.display = open ? 'block' : 'none';
         });
 
-        // 提交按钮事件
         submitBtn.addEventListener('click', function(e) {
             e.preventDefault();
             const username = usernameInput.value.trim();
@@ -49,52 +42,54 @@
                 alert('请填写完整信息');
                 return;
             }
-
-            // 添加加载状态
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
 
-            // 模拟异步操作
-            setTimeout(() => {
-                try {
-                    const timestamp = Date.now();
-                    // 这里用当前提交时的日期格式，也可以用用户选择的日期
-                    const comment = { username, content, date: timestamp, displayDate: formattedDate };
-                    saveComment(comment);
+            const comment = {
+                username,
+                content,
+                date: Date.now(),
+                displayDate: formattedDate
+            };
+
+            fetch('/comments', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(comment)
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error('提交失败');
+                    return res.json();
+                })
+                .then(data => {
                     commentInput.value = '';
                     adjustTextareaHeight();
+                    updateCommentsTitle(today); // 新增
                     loadComments(today);
-
-                    // 添加提交成功动画
                     submitBtn.classList.add('success');
-                    setTimeout(() => {
-                        submitBtn.classList.remove('success');
-                    }, 1000);
-                } catch (error) {
-                    console.error('提交失败:', error);
-                    alert('提交失败，请重试');
-                } finally {
-                    // 恢复按钮状态
+                    setTimeout(() => submitBtn.classList.remove('success'), 1000);
+                })
+                .catch(err => {
+                    alert(err.message);
+                })
+                .finally(() => {
                     submitBtn.classList.remove('loading');
                     submitBtn.disabled = false;
-                }
-            }, 800); // 模拟网络延迟
+                });
         });
 
-        // 查看历史
         loadDateBtn.addEventListener('click', function() {
             const selectedDate = new Date(dateSelector.value);
+            updateCommentsTitle(selectedDate); // 新增
             loadComments(selectedDate);
         });
 
-        // 插入 emoji
         function insertEmoji(emoji) {
             commentInput.value += emoji;
             adjustTextareaHeight();
             commentInput.focus();
         }
 
-        // 渲染 emoji 按钮
         function renderEmojiPicker() {
             if (!emojiPicker) return;
             emojiPicker.innerHTML = '';
@@ -106,60 +101,93 @@
                 btn.addEventListener('click', () => insertEmoji(emoji));
                 emojiPicker.appendChild(btn);
             });
-            // 默认隐藏
             emojiPicker.style.display = 'none';
         }
 
         // 删除评论
-        function deleteComment(ts, date) {
-            let all = JSON.parse(localStorage.getItem('dailyComments') || '[]');
-            all = all.filter(c => c.date !== ts);
-            localStorage.setItem('dailyComments', JSON.stringify(all));
-            loadComments(date);
+        function deleteComment(id, date) {
+            fetch(`/comments/${id}`, { method: 'DELETE' })
+                .then(res => {
+                    if (!res.ok) throw new Error('删除失败');
+                    loadComments(date);
+                })
+                .catch(err => alert(err.message));
         }
 
-        function saveComment(comment) {
-            const arr = JSON.parse(localStorage.getItem('dailyComments') || '[]');
-            arr.push(comment);
-            localStorage.setItem('dailyComments', JSON.stringify(arr));
-        }
-
+        // 加载评论并渲染
         function loadComments(date) {
-            const start = new Date(date); start.setHours(0,0,0,0);
-            const end = new Date(date); end.setHours(23,59,59,999);
-            const all = JSON.parse(localStorage.getItem('dailyComments') || '[]');
-            const filtered = all.filter(c => {
-                const t = new Date(c.date);
-                return t >= start && t <= end;
-            });
-            todayCommentsList.innerHTML = '';
-            if (filtered.length === 0) {
-                todayCommentsList.innerHTML = `<p>${isToday(date) ? '今日暂无打卡' : '暂无打卡记录'}</p>`;
-                return;
+            fetch('/comments')
+                .then(res => {
+                    if (!res.ok) throw new Error('获取评论失败');
+                    return res.json();
+                })
+                .then(allComments => {
+                    const start = new Date(date); start.setHours(0,0,0,0);
+                    const end = new Date(date); end.setHours(23,59,59,999);
+                    const filtered = allComments.filter(c => {
+                        const t = new Date(c.date);
+                        return t >= start && t <= end;
+                    });
+                    todayCommentsList.innerHTML = '';
+                    if (filtered.length === 0) {
+                        todayCommentsList.innerHTML = `<p>${isToday(date) ? '今日暂无打卡' : '暂无打卡记录'}</p>`;
+                        return;
+                    }
+                    filtered.forEach(c => {
+                        const displayDate = c.displayDate || formatDate(new Date(c.date));
+                        const item = document.createElement('div');
+                        item.className = 'comment-item';
+                        item.innerHTML = `
+                          <div class="comment-header">
+                            <strong>${escapeHTML(c.username)}</strong> <span>${escapeHTML(displayDate)}</span>
+                          </div>
+                          <div class="comment-content">${escapeHTML(c.content)}</div>
+                          <button class="delete-btn" data-id="${c._id}">删除</button>
+                        `;
+                        const delBtn = item.querySelector('.delete-btn');
+                        delBtn.addEventListener('click', () => deleteComment(c._id, date));
+                        todayCommentsList.appendChild(item);
+                    });
+                })
+                .catch(err => {
+                    todayCommentsList.innerHTML = `<p>加载评论失败</p>`;
+                    console.error(err);
+                });
+        }
+
+        // 根据日期更新标题
+        function updateCommentsTitle(date) {
+            if (isToday(date)) {
+                commentsTitle.textContent = '今日已打卡';
+            } else {
+                const opts = { year: 'numeric', month: 'long', day: 'numeric' };
+                const formatted = date.toLocaleDateString('zh-CN', opts);
+                commentsTitle.textContent = `${formatted} 已打卡`;
             }
-            filtered.forEach(c => {
-                const item = document.createElement('div');
-                item.className = 'comment-item';
-                item.innerHTML = `
-          <div class="comment-header">
-            <strong>${c.username}</strong> <span>${c.displayDate}</span>
-          </div>
-          <div class="comment-content">${c.content}</div>
-          <button class="delete-btn" data-ts="${c.date}">删除</button>
-        `;
-                const delBtn = item.querySelector('.delete-btn');
-                delBtn.addEventListener('click', () => deleteComment(c.date, date));
-                todayCommentsList.appendChild(item);
-            });
         }
 
         function formatDate(d) {
             const opts = { year:'numeric', month:'long', day:'numeric', weekday:'long' };
             return d.toLocaleDateString('zh-CN', opts);
         }
+
         function isToday(d) {
             const n = new Date();
-            return d.getDate()===n.getDate() && d.getMonth()===n.getMonth() && d.getFullYear()===n.getFullYear();
+            return d.getDate() === n.getDate() && d.getMonth() === n.getMonth() && d.getFullYear() === n.getFullYear();
+        }
+
+        // 防止XSS
+        function escapeHTML(str) {
+            if (!str) return '';
+            return String(str).replace(/[&<>"']/g, function(m) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                }[m];
+            });
         }
     });
 })();
