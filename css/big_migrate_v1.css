@@ -116,6 +116,12 @@
     border-bottom: 1px solid #eee;
 }
 
+.material-download th:last-child,
+.material-download td:last-child {
+    text-align: center;
+    vertical-align: middle;
+}
+
 .material-download th {
     background-color: #0066cc;
     color: white;
@@ -128,10 +134,24 @@
 .material-download a {
     color: #0066cc;
     transition: color 0.3s ease;
+    display: inline-block;
 }
 
 .material-download a:hover {
     color: #0052a3;
+    transform: scale(1.1);
+}
+
+.material-download svg {
+    transition: all 0.3s ease;
+}
+
+.material-download a:hover svg {
+    transform: scale(1.2);
+}
+
+.material-download a:hover svg path {
+    fill: #0052a3;
 }
 
 /* 任务发布部分样式 */
