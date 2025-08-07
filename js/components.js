@@ -13,7 +13,6 @@ const HEADER_HTML = `
                 <li><a href="contest.html">竞赛信息</a></li>
                 <li><a href="leader.html">协会负责人</a></li>
                 <li><a href="excellent.html">优秀成员</a></li>
-                <li><a href="comment.html">每日打卡</a></li>
                 <li><a href="links.html">友链栏</a></li>
             </ul>
         </nav>
@@ -50,8 +49,9 @@ const FOOTER_HTML = `
                     <li><a href="contest.html">竞赛信息</a></li>
                     <li><a href="leader.html">协会负责人</a></li>
                     <li><a href="excellent.html">优秀成员</a></li>
-                    <li><a href="comment.html">每日打卡</a></li>
                     <li><a href="links.html">友链栏</a></li>
+                    <li><a href="big_migrate.html">大移民计划</a></li>
+                    <li><a href="clock.html">每日打卡</a></li>
                 </ul>
             </div>
         </div>

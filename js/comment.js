@@ -1,7 +1,7 @@
-(function() {
+(function () {
     'use strict';
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const usernameInput = document.getElementById('username');
         const commentInput = document.getElementById('comment-content');
         const submitBtn = document.getElementById('submit-comment');
@@ -10,9 +10,8 @@
         const loadDateBtn = document.getElementById('load-date');
         const emojiPicker = document.getElementById('emoji-picker');
         const emojiToggle = document.getElementById('emoji-toggle');
-        const commentsTitle = document.getElementById('comments-title'); // 新增标题元素
+        const commentsTitle = document.getElementById('comments-title');
 
-        // 常用 emoji 列表
         const emojis = ['😊', '😂', '👍', '🎉', '❤️', '🤔', '😢', '🥳'];
 
         const today = new Date();
@@ -34,8 +33,9 @@
             emojiPicker.style.display = open ? 'block' : 'none';
         });
 
-        submitBtn.addEventListener('click', function(e) {
+        submitBtn.addEventListener('click', function (e) {
             e.preventDefault();
+
             const username = usernameInput.value.trim();
             const content = commentInput.value.trim();
 
@@ -65,19 +65,34 @@
                 alert('姓名不能超过 20 个字符');
                 return;
             }
+
+            if (content.length > 300) {
+                alert('内容不能超过 300 个字符');
+                return;
+            }
+
+            // ✅ 提交频率检查（5 秒内禁止提交）
+            const lastSubmit = localStorage.getItem('lastSubmitTime');
+            const now = Date.now();
+            if (lastSubmit && now - parseInt(lastSubmit) < 5000) {
+                alert('发送太频繁，请稍后再试');
+                return;
+            }
+            localStorage.setItem('lastSubmitTime', now);
+
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
 
             const comment = {
                 username,
                 content,
-                date: Date.now(),
+                date: now,
                 displayDate: formattedDate
             };
 
             fetch('/comments', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(comment)
             })
                 .then(res => {
@@ -87,7 +102,7 @@
                 .then(data => {
                     commentInput.value = '';
                     adjustTextareaHeight();
-                    updateCommentsTitle(today); // 新增
+                    updateCommentsTitle(today);
                     loadComments(today);
                     submitBtn.classList.add('success');
                     setTimeout(() => submitBtn.classList.remove('success'), 1000);
@@ -101,9 +116,9 @@
                 });
         });
 
-        loadDateBtn.addEventListener('click', function() {
+        loadDateBtn.addEventListener('click', function () {
             const selectedDate = new Date(dateSelector.value);
-            updateCommentsTitle(selectedDate); // 新增
+            updateCommentsTitle(selectedDate);
             loadComments(selectedDate);
         });
 
@@ -127,7 +142,6 @@
             emojiPicker.style.display = 'none';
         }
 
-        // 删除评论
         function deleteComment(id, date) {
             fetch(`/comments/${id}`, { method: 'DELETE' })
                 .then(res => {
@@ -137,7 +151,6 @@
                 .catch(err => alert(err.message));
         }
 
-        // 加载评论并渲染
         function loadComments(date) {
             fetch('/comments')
                 .then(res => {
@@ -145,8 +158,8 @@
                     return res.json();
                 })
                 .then(allComments => {
-                    const start = new Date(date); start.setHours(0,0,0,0);
-                    const end = new Date(date); end.setHours(23,59,59,999);
+                    const start = new Date(date); start.setHours(0, 0, 0, 0);
+                    const end = new Date(date); end.setHours(23, 59, 59, 999);
                     const filtered = allComments.filter(c => {
                         const t = new Date(c.date);
                         return t >= start && t <= end;
@@ -178,7 +191,6 @@
                 });
         }
 
-        // 根据日期更新标题
         function updateCommentsTitle(date) {
             if (isToday(date)) {
                 commentsTitle.textContent = '今日已打卡';
@@ -190,7 +202,7 @@
         }
 
         function formatDate(d) {
-            const opts = { year:'numeric', month:'long', day:'numeric', weekday:'long' };
+            const opts = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
             return d.toLocaleDateString('zh-CN', opts);
         }
 
@@ -199,10 +211,9 @@
             return d.getDate() === n.getDate() && d.getMonth() === n.getMonth() && d.getFullYear() === n.getFullYear();
         }
 
-        // 防止XSS
         function escapeHTML(str) {
             if (!str) return '';
-            return String(str).replace(/[&<>"']/g, function(m) {
+            return String(str).replace(/[&<>"']/g, function (m) {
                 return {
                     '&': '&amp;',
                     '<': '&lt;',
